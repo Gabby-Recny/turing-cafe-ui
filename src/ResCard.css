@@ -1,0 +1,13 @@
+.cards {
+    border: 5px teal solid;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 175px;
+    background-color: white;
+}
+
+p {
+    font-size: 14px;
+    line-height: 0.8;
+}

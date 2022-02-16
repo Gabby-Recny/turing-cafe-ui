@@ -15,7 +15,6 @@ const Reservations = ({ reservations }) => {
         })
     return (
         <section className='res-container'>
-            <h1 style={{color:'white'}}>Hi</h1>   
             {resCards}
         </section>
     )
