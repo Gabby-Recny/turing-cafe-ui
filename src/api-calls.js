@@ -1,4 +1,4 @@
-// import React  from "react";
+
 
 const getAllReservations = () => {
     return fetch('http://localhost:3001/api/v1/reservations')
@@ -13,5 +13,21 @@ const checkResponse = (response) => {
     }
 }
 
+const postNewRes = (newRes) => {
+    return fetch('http://localhost:3001/api/v1/reservations', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newRes)
+    }).then(response => checkResponse(response)) 
+}
 
-export { getAllReservations }
+const deleteThisRes = (id) => {
+    return fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+        method: 'DELETE'
+    })
+}
+
+
+export { getAllReservations, postNewRes, deleteThisRes }

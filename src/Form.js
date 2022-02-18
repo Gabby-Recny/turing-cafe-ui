@@ -1,4 +1,5 @@
 import React from "react";
+import { postNewRes } from './api-calls'
 
 class Form extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ class Form extends React.Component {
             name: '',
             date: '',
             time: '',
-            guests: 0,
+            number: 0,
         }
     }
 
@@ -19,11 +20,12 @@ class Form extends React.Component {
 
     submitRes = (event) => {
         event.preventDefault()
-        const newRes = {
+        const newlyCreatedRes = {
             id: Date.now(),
             ...this.state
         }
-        this.props.addNewRes(newRes)
+        postNewRes(newlyCreatedRes)
+        .then(res => this.props.addNewRes(res))
         this.clearInputs()
     }
 
@@ -32,13 +34,14 @@ class Form extends React.Component {
             name: '',
             date: '',
             time: '',
-            guests: 0,
+            number: 0,
         })
     }
+
+
     render() {
         return (
-            <section>
-                <h1>FORM</h1>
+            <section className='form'>
                 <form>
                 <label>
                     Name:
@@ -54,7 +57,7 @@ class Form extends React.Component {
                 </label>
                 <label>
                     Number of Guests:
-                    <input type="text" name="guests" value={this.state.guests} onChange={event => this.handleChange(event)}/>
+                    <input type="number" name="number" value={this.state.number} onChange={event => this.handleChange(event)}/>
                 </label>
                 <button type="submit" value="Submit" onClick={event => this.submitRes(event)}>Make a Reservation</button>
                 </form>
